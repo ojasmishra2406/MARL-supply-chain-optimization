@@ -8,6 +8,7 @@ class ManifestSchema(BaseModel):
     run_id: UUID
     git_commit_hash: str
     config_hash: str
+    config_path: str
     seed: int
     library_versions: dict[str, str]
     hardware: dict

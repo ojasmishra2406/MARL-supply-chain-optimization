@@ -40,11 +40,14 @@ Applies to PyTorch neural-network training and GPU/cuDNN computations.
 
 ### Manifest System
 Every run generates a reproducible manifest tracking:
-- Exact YAML SHA-256 configuration hash (configuration drift detection)
+- Exact YAML SHA-256 configuration hash (computed over the exact YAML file bytes)
+- Repository-relative path of the exact configuration YAML used for the run
 - Git commit hash
-- Seed
+- Seed (derived from that same configuration)
 - Installed library versions
 - Framework-independent hardware metadata
+
+Verification resolves the stored configuration path and re-computes the SHA256 to detect configuration drift.
 
 ## Docker
 **Docker is a reproducibility artifact and is not required for day-to-day development.**
