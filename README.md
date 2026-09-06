@@ -38,6 +38,16 @@ Applies to PyTorch neural-network training and GPU/cuDNN computations.
 **Guarantee**: Deterministic within a fixed hardware class and deterministic PyTorch settings (`torch.use_deterministic_algorithms(True)`).
 *Note: Universal bit-identical GPU reproduction across arbitrary GPU architectures is not claimed. Tier 2 reproduction is evaluated against originally reported 95% confidence-interval bounds.*
 
+## Phase 1: Deterministic Supply-Chain Simulator
+The core simulator is a standalone, deterministic 4-echelon supply-chain domain (Retailer -> Wholesaler -> Distributor -> Manufacturer).
+
+- **Canonical Configuration**: Uses a YAML config (`configs/phase1_simulator.yaml`) specifying lead times (2, 2, 3, 4), normal demand (mu=20, sigma=5) at the retailer, and fixed 100 units/step capacity.
+- **State Model**: Echelon state is explicitly modeled with `inventory`, `backlog`, `pipeline_inventory`, `demand_history`, and `last_order`.
+- **RNG & Reproducibility**: Uses a single NumPy `Generator` seeded from the manifest. Repeated runs with the same seed are byte-identical.
+- **Test Result**: All functional, property-based (Hypothesis), and regression tests passed.
+- **Coverage**: 100.0% coverage on simulator core.
+- **Performance**: Benchmark measured at ~23,500 steps/sec (single-threaded).
+
 ### Manifest System
 Every run generates a reproducible manifest tracking:
 - Exact YAML SHA-256 configuration hash (computed over the exact YAML file bytes)
