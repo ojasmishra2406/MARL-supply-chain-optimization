@@ -1,6 +1,8 @@
 import platform
-import psutil
+
 import cpuinfo
+import psutil
+
 
 def get_hardware_info() -> dict:
     info = {
@@ -12,13 +14,14 @@ def get_hardware_info() -> dict:
         "physical_cpus": psutil.cpu_count(logical=False),
         "total_ram_gb": round(psutil.virtual_memory().total / (1024**3), 2),
     }
-    
+
     try:
         import torch
+
         if torch.cuda.is_available():
             info["gpu"] = torch.cuda.get_device_name(0)
             info["gpu_count"] = torch.cuda.device_count()
     except ImportError:
         pass
-        
+
     return info

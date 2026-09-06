@@ -13,5 +13,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Generate a deterministic hash based on deterministic fixture
-# We'll use tests.conftest's deterministic_fixture_input
-CMD ["python", "-c", "from tests.conftest import compute_deterministic_hash, deterministic_fixture_input; import pytest; print(compute_deterministic_hash(deterministic_fixture_input()))"]
+CMD ["python", "smoke_test.py"]

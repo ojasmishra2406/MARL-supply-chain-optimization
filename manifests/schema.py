@@ -1,7 +1,8 @@
-from pydantic import BaseModel
-from typing import Optional
-from uuid import UUID
 from datetime import datetime
+from uuid import UUID
+
+from pydantic import BaseModel
+
 
 class ManifestSchema(BaseModel):
     run_id: UUID
@@ -12,4 +13,4 @@ class ManifestSchema(BaseModel):
     hardware: dict
     start_time: datetime
     end_time: datetime
-    checkpoint_sha256: Optional[str] = None
+    checkpoint_sha256: str | None = None
