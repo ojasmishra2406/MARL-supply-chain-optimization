@@ -48,6 +48,15 @@ The core simulator is a standalone, deterministic 4-echelon supply-chain domain 
 - **Coverage**: 100.0% coverage on simulator core.
 - **Performance**: Benchmark measured at ~23,500 steps/sec (single-threaded).
 
+## Phase 2: PettingZoo Multi-Agent Environment Wrapper
+The project provides a PettingZoo `ParallelEnv` wrapper around the deterministic supply-chain simulator.
+
+- **Four Agents**: `"retailer"`, `"wholesaler"`, `"distributor"`, `"manufacturer"`.
+- **Action Space**: `Discrete(capacity + 1)`. If `comm_enabled=True`, `Dict` space with an additional `message` `Box` array.
+- **Observation Space**: `Box` containing `inventory, backlog, pipeline_inventory, last_demand, last_order`. If `comm_enabled=True`, includes `message_upstream` and `message_downstream`.
+- **Reward Semantics**: Negative of step cost (`- (holding + backlog + ordering)`).
+- **Communication Topology**: Step $t$ message received at $t+1$ strictly by immediate supply chain neighbors.
+
 ### Manifest System
 Every run generates a reproducible manifest tracking:
 - Exact YAML SHA-256 configuration hash (computed over the exact YAML file bytes)
