@@ -19,6 +19,7 @@ class SupplyChainSimulator:
     RNG Strategy: Single NumPy Generator strictly seeded.
     Determinism: Repeated runs with same seed are byte-identical.
     """
+
     def __init__(self, config_path: str, seed: int | None = None):
         self.config_path = config_path
         with open(config_path, "r") as f:
@@ -122,14 +123,18 @@ class SupplyChainSimulator:
         8. cost (computed on ending inventory and backlog)
         """
         if len(actions) != self.num_echelons:
-            raise ValueError(f"Expected {self.num_echelons} actions, got {len(actions)}")
-        
+            raise ValueError(
+                f"Expected {self.num_echelons} actions, got {len(actions)}"
+            )
+
         for a in actions:
             if not isinstance(a, int) or a < 0:
                 raise ValueError("Actions must be non-negative integers")
 
         # 1. Demand generation
-        customer_demand = int(np.round(self.rng.normal(self.demand_mean, self.demand_std)))
+        customer_demand = int(
+            np.round(self.rng.normal(self.demand_mean, self.demand_std))
+        )
         if self.clip_demand and customer_demand < 0:
             customer_demand = 0
 
@@ -139,7 +144,9 @@ class SupplyChainSimulator:
             demands[i] = actions[i - 1]
 
         # 2 & 3 & 4. Demand fulfillment & Order processing
-        shipped = [0] * (self.num_echelons + 1)  # indices 0..3 for modeled, 4 for supplier
+        shipped = [0] * (
+            self.num_echelons + 1
+        )  # indices 0..3 for modeled, 4 for supplier
         for i in range(self.num_echelons):
             e = self.state.echelons[i]
             e.demand_history.append(demands[i])
@@ -148,7 +155,7 @@ class SupplyChainSimulator:
             total_requested = demands[i] + e.backlog
             can_ship = min(total_requested, e.inventory, self.capacity)
             shipped[i] = can_ship
-            
+
             e.inventory -= can_ship
             e.backlog = total_requested - can_ship
 
@@ -159,10 +166,10 @@ class SupplyChainSimulator:
         for i in range(self.num_echelons):
             e = self.state.echelons[i]
             incoming_shipment = shipped[i + 1]
-            
+
             e.pipeline.append(incoming_shipment)
             arriving = e.pipeline.pop(0)
-            
+
             e.inventory += arriving
             e.pipeline_inventory = sum(e.pipeline)
 
@@ -173,7 +180,7 @@ class SupplyChainSimulator:
             c_h = e.inventory * self.cost_holding
             c_b = e.backlog * self.cost_backlog
             c_o = actions[i] * self.cost_ordering
-            step_cost += (c_h + c_b + c_o)
+            step_cost += c_h + c_b + c_o
 
         self.current_step += 1
         self.state.step = self.current_step
@@ -199,5 +206,5 @@ class SupplyChainSimulator:
         for actions in actions_sequence:
             state, _, _ = self.step(actions)
             trajectory.append(state.get_dict())
-        
+
         return json.dumps(trajectory, sort_keys=True).encode("utf-8")
