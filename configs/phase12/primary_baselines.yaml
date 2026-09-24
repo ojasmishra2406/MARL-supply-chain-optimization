@@ -1,0 +1,38 @@
+ablation_family: Baseline
+algorithm:
+- ippo
+- mappo
+architecture: mlp
+forecasting:
+  enabled: false
+gnn:
+  enabled: false
+communication:
+  enabled: false
+centralized_critic:
+- false
+- true
+regime:
+- baseline
+- high_variance
+seed:
+- 0
+- 1
+- 2
+- 3
+- 4
+environment: configs/phase1_simulator.yaml
+evaluation_settings:
+  scenarios:
+  - in_distribution
+  - demand_shift
+  - demand_spike
+  - lead_time_shift
+  - capacity_disruption
+  - combined_shift
+  eval_seeds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4

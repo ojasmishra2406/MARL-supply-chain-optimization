@@ -1,0 +1,12 @@
+# Demand Spike
+# Applies a sudden demand spike. Since the YAML parameterizes it, we will add a new 'spike' key.
+# Note: The exact Phase 7 specification for 'spike' is undefined, so we define a reasonable placeholder structure.
+demand:
+  distribution: normal
+  mean: 20
+  std: 5
+  clip_at_zero: true
+  retailer_facing_only: true
+spike:
+  step: 26
+  magnitude: 150

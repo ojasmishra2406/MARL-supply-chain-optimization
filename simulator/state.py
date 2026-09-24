@@ -1,14 +1,13 @@
 import dataclasses
-from typing import List
 
 
 @dataclasses.dataclass
 class EchelonState:
     inventory: int = 0
     backlog: int = 0
-    pipeline: List[int] = dataclasses.field(default_factory=list)
+    pipeline: list[int] = dataclasses.field(default_factory=list)
     pipeline_inventory: int = 0
-    demand_history: List[int] = dataclasses.field(default_factory=list)
+    demand_history: list[int] = dataclasses.field(default_factory=list)
     last_order: int = 0
 
     def get_dict(self) -> dict:
@@ -25,7 +24,7 @@ class EchelonState:
 @dataclasses.dataclass
 class SimulatorState:
     step: int
-    echelons: List[EchelonState]
+    echelons: list[EchelonState]
     total_cost: float
 
     def get_dict(self) -> dict:

@@ -1,0 +1,4 @@
+# Capacity Disruption
+# Applies a capacity constraint disruption to the environment
+capacity:
+  units_per_step_per_echelon: 25

@@ -16,6 +16,7 @@ class SupplyChainParallelEnv(ParallelEnv):
         self.config_path = config_path
         self.comm_enabled = comm_enabled
         self.comm_dim = comm_dim
+        self.render_mode = None
 
         self.simulator = SupplyChainSimulator(config_path)
 

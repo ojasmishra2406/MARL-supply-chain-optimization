@@ -1,0 +1,160 @@
+[2026-09-21T18:16:42.909082] Starting sequential execution of 5 seeds for Phase 6.
+[2026-09-21T18:16:42.909082] --- Starting phase6_mappo_comm_high_variance_s0 ---
+[phase6_mappo_comm_high_variance_s0] Starting at 2026-09-21T18:16:43.053083...
+Traceback (most recent call last):
+  File "C:\Users\mishr\OneDrive\Documents\MARL\run_mappo_comm_worker.py", line 28, in <module>
+    from rl.phase6_trainer import Phase6Trainer
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\phase6_trainer.py", line 5, in <module>
+    from rl.mappo_trainer import Phase5Agent
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\mappo_trainer.py", line 7, in <module>
+    import wandb
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\__init__.py", line 27, in <module>
+    from wandb import sdk as wandb_sdk
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\__init__.py", line 25, in <module>
+    from .artifacts.artifact import Artifact
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\artifacts\artifact.py", line 46, in <module>
+    from wandb.apis.normalize import normalize_exceptions
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\__init__.py", line 43, in <module>
+    from .internal import Api as InternalApi  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\internal.py", line 3, in <module>
+    from wandb.sdk.internal.internal_api import Api as InternalApi
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\internal\internal_api.py", line 48, in <module>
+    from ..lib import retry
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\retry.py", line 17, in <module>
+    from .mailbox import ContextCancelledError
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 102, in <module>
+    class _MailboxSlot:
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 103, in _MailboxSlot
+    _result: Optional[pb.Result]
+                      ^^^^^^^^^
+AttributeError: module 'wandb.proto.wandb_internal_pb2' has no attribute 'Result'
+[2026-09-21T18:16:49.189858] WARNING: phase6_mappo_comm_high_variance_s0 failed with exit code 1
+[2026-09-21T18:16:49.189858] --- Starting phase6_mappo_comm_high_variance_s1 ---
+[phase6_mappo_comm_high_variance_s1] Starting at 2026-09-21T18:16:49.302675...
+Traceback (most recent call last):
+  File "C:\Users\mishr\OneDrive\Documents\MARL\run_mappo_comm_worker.py", line 28, in <module>
+    from rl.phase6_trainer import Phase6Trainer
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\phase6_trainer.py", line 5, in <module>
+    from rl.mappo_trainer import Phase5Agent
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\mappo_trainer.py", line 7, in <module>
+    import wandb
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\__init__.py", line 27, in <module>
+    from wandb import sdk as wandb_sdk
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\__init__.py", line 25, in <module>
+    from .artifacts.artifact import Artifact
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\artifacts\artifact.py", line 46, in <module>
+    from wandb.apis.normalize import normalize_exceptions
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\__init__.py", line 43, in <module>
+    from .internal import Api as InternalApi  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\internal.py", line 3, in <module>
+    from wandb.sdk.internal.internal_api import Api as InternalApi
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\internal\internal_api.py", line 48, in <module>
+    from ..lib import retry
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\retry.py", line 17, in <module>
+    from .mailbox import ContextCancelledError
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 102, in <module>
+    class _MailboxSlot:
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 103, in _MailboxSlot
+    _result: Optional[pb.Result]
+                      ^^^^^^^^^
+AttributeError: module 'wandb.proto.wandb_internal_pb2' has no attribute 'Result'
+[2026-09-21T18:16:52.512881] WARNING: phase6_mappo_comm_high_variance_s1 failed with exit code 1
+[2026-09-21T18:16:52.512881] --- Starting phase6_mappo_comm_high_variance_s2 ---
+[phase6_mappo_comm_high_variance_s2] Starting at 2026-09-21T18:16:52.660339...
+Traceback (most recent call last):
+  File "C:\Users\mishr\OneDrive\Documents\MARL\run_mappo_comm_worker.py", line 28, in <module>
+    from rl.phase6_trainer import Phase6Trainer
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\phase6_trainer.py", line 5, in <module>
+    from rl.mappo_trainer import Phase5Agent
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\mappo_trainer.py", line 7, in <module>
+    import wandb
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\__init__.py", line 27, in <module>
+    from wandb import sdk as wandb_sdk
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\__init__.py", line 25, in <module>
+    from .artifacts.artifact import Artifact
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\artifacts\artifact.py", line 46, in <module>
+    from wandb.apis.normalize import normalize_exceptions
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\__init__.py", line 43, in <module>
+    from .internal import Api as InternalApi  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\internal.py", line 3, in <module>
+    from wandb.sdk.internal.internal_api import Api as InternalApi
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\internal\internal_api.py", line 48, in <module>
+    from ..lib import retry
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\retry.py", line 17, in <module>
+    from .mailbox import ContextCancelledError
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 102, in <module>
+    class _MailboxSlot:
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 103, in _MailboxSlot
+    _result: Optional[pb.Result]
+                      ^^^^^^^^^
+AttributeError: module 'wandb.proto.wandb_internal_pb2' has no attribute 'Result'
+[2026-09-21T18:16:55.313922] WARNING: phase6_mappo_comm_high_variance_s2 failed with exit code 1
+[2026-09-21T18:16:55.313922] --- Starting phase6_mappo_comm_high_variance_s3 ---
+[phase6_mappo_comm_high_variance_s3] Starting at 2026-09-21T18:16:55.424272...
+Traceback (most recent call last):
+  File "C:\Users\mishr\OneDrive\Documents\MARL\run_mappo_comm_worker.py", line 28, in <module>
+    from rl.phase6_trainer import Phase6Trainer
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\phase6_trainer.py", line 5, in <module>
+    from rl.mappo_trainer import Phase5Agent
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\mappo_trainer.py", line 7, in <module>
+    import wandb
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\__init__.py", line 27, in <module>
+    from wandb import sdk as wandb_sdk
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\__init__.py", line 25, in <module>
+    from .artifacts.artifact import Artifact
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\artifacts\artifact.py", line 46, in <module>
+    from wandb.apis.normalize import normalize_exceptions
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\__init__.py", line 43, in <module>
+    from .internal import Api as InternalApi  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\internal.py", line 3, in <module>
+    from wandb.sdk.internal.internal_api import Api as InternalApi
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\internal\internal_api.py", line 48, in <module>
+    from ..lib import retry
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\retry.py", line 17, in <module>
+    from .mailbox import ContextCancelledError
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 102, in <module>
+    class _MailboxSlot:
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 103, in _MailboxSlot
+    _result: Optional[pb.Result]
+                      ^^^^^^^^^
+AttributeError: module 'wandb.proto.wandb_internal_pb2' has no attribute 'Result'
+[2026-09-21T18:16:58.365667] WARNING: phase6_mappo_comm_high_variance_s3 failed with exit code 1
+[2026-09-21T18:16:58.365667] --- Starting phase6_mappo_comm_high_variance_s4 ---
+[phase6_mappo_comm_high_variance_s4] Starting at 2026-09-21T18:16:58.452055...
+Traceback (most recent call last):
+  File "C:\Users\mishr\OneDrive\Documents\MARL\run_mappo_comm_worker.py", line 28, in <module>
+    from rl.phase6_trainer import Phase6Trainer
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\phase6_trainer.py", line 5, in <module>
+    from rl.mappo_trainer import Phase5Agent
+  File "C:\Users\mishr\OneDrive\Documents\MARL\rl\mappo_trainer.py", line 7, in <module>
+    import wandb
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\__init__.py", line 27, in <module>
+    from wandb import sdk as wandb_sdk
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\__init__.py", line 25, in <module>
+    from .artifacts.artifact import Artifact
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\artifacts\artifact.py", line 46, in <module>
+    from wandb.apis.normalize import normalize_exceptions
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\__init__.py", line 43, in <module>
+    from .internal import Api as InternalApi  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\apis\internal.py", line 3, in <module>
+    from wandb.sdk.internal.internal_api import Api as InternalApi
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\internal\internal_api.py", line 48, in <module>
+    from ..lib import retry
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\retry.py", line 17, in <module>
+    from .mailbox import ContextCancelledError
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 102, in <module>
+    class _MailboxSlot:
+  File "C:\Users\mishr\OneDrive\Documents\MARL\.venv\Lib\site-packages\wandb\sdk\lib\mailbox.py", line 103, in _MailboxSlot
+    _result: Optional[pb.Result]
+                      ^^^^^^^^^
+AttributeError: module 'wandb.proto.wandb_internal_pb2' has no attribute 'Result'
+[2026-09-21T18:17:01.307407] WARNING: phase6_mappo_comm_high_variance_s4 failed with exit code 1
+[2026-09-21T18:17:01.307407] Finished sequential execution of all Phase 6 seeds.
+[2026-09-21T18:17:30.510859] Starting sequential execution of 5 seeds for Phase 6.
+[2026-09-21T18:17:30.510859] --- Starting phase6_mappo_comm_high_variance_s0 ---
+[phase6_mappo_comm_high_variance_s0] Starting at 2026-09-21T18:17:30.598790...

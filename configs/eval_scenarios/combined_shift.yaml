@@ -1,0 +1,18 @@
+# Combined Shift
+# Applies a combination of demand shift, lead-time shift, and capacity disruption.
+demand:
+  distribution: normal
+  mean: 25
+  std: 8
+  clip_at_zero: true
+  retailer_facing_only: true
+lead_time:
+  - 3
+  - 3
+  - 4
+  - 5
+capacity:
+  units_per_step_per_echelon: 50
+spike:
+  step: 40
+  magnitude: 100

@@ -1,0 +1,14 @@
+{
+  "algorithms": [
+    "ippo",
+    "mappo",
+    "ippo_comm",
+    "mappo_comm"
+  ],
+  "conditions": [
+    "baseline",
+    "high_variance"
+  ],
+  "seeds": [0, 1, 2, 3, 4],
+  "out_runs": 30
+}

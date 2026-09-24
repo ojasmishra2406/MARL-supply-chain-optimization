@@ -45,7 +45,7 @@ def test_reset_and_step_semantics():
     # 1 step
     actions = {a: 10 for a in env.possible_agents}
     next_obs, rewards, term, trunc, next_infos = env.step(actions)
-    
+
     assert set(next_obs.keys()) == set(env.possible_agents)
     assert set(rewards.keys()) == set(env.possible_agents)
     assert set(term.keys()) == set(env.possible_agents)
@@ -91,13 +91,13 @@ def test_reward_generation():
 def test_observation_isolation():
     env = SupplyChainParallelEnv(get_config_path())
     env.reset(seed=42)
-    
+
     # Change manufacturer inventory
     env.simulator.state.echelons[3].inventory = 500
-    
+
     # Get obs
     obs = env._get_observations()
-    
+
     # Retailer obs should have 0 inventory
     assert obs["retailer"][0] == 0.0
     # Manufacturer obs should have 500 inventory
@@ -110,7 +110,7 @@ def test_same_seed_determinism():
 
     obs1, _ = env1.reset(seed=42)
     obs2, _ = env2.reset(seed=42)
-    
+
     def serialize_obs(obs):
         return json.dumps({k: v.tolist() for k, v in obs.items()}, sort_keys=True)
 
@@ -141,6 +141,7 @@ def test_different_seed_behavior():
 
     assert serialize_obs(next_obs1) != serialize_obs(next_obs2)
 
+
 def test_comm_spaces():
     env = SupplyChainParallelEnv(get_config_path(), comm_enabled=True, comm_dim=4)
     for agent in env.possible_agents:
@@ -158,7 +159,7 @@ def test_comm_spaces():
 def test_comm_delay_and_topology():
     env = SupplyChainParallelEnv(get_config_path(), comm_enabled=True, comm_dim=4)
     obs, _ = env.reset(seed=42)
-    
+
     # t=0 observations: no messages
     for agent in env.possible_agents:
         assert np.allclose(obs[agent]["message_upstream"], np.zeros(4))
@@ -182,7 +183,9 @@ def test_comm_delay_and_topology():
     # Topology:
     # Retailer receives msg_w on message_upstream
     assert np.allclose(obs["retailer"]["message_upstream"], msg_w)
-    assert np.allclose(obs["retailer"]["message_downstream"], np.zeros(4)) # No downstream of retailer
+    assert np.allclose(
+        obs["retailer"]["message_downstream"], np.zeros(4)
+    )  # No downstream of retailer
 
     # Wholesaler receives msg_r on message_downstream, msg_d on message_upstream
     assert np.allclose(obs["wholesaler"]["message_downstream"], msg_r)
@@ -194,28 +197,33 @@ def test_comm_delay_and_topology():
 
     # Manufacturer receives msg_d on message_downstream
     assert np.allclose(obs["manufacturer"]["message_downstream"], msg_d)
-    assert np.allclose(obs["manufacturer"]["message_upstream"], np.zeros(4)) # No upstream of mfg
+    assert np.allclose(
+        obs["manufacturer"]["message_upstream"], np.zeros(4)
+    )  # No upstream of mfg
 
 
 def test_performance_sanity():
     import time
+
     env = SupplyChainParallelEnv(get_config_path())
     env.reset(seed=42)
     actions = {a: 0 for a in env.possible_agents}
-    
+
     start = time.perf_counter()
     for _ in range(100):
         _, _, _, trunc, _ = env.step(actions)
         if trunc and trunc.get("retailer"):
             env.reset()
     elapsed = time.perf_counter() - start
-    
+
     steps_per_sec = 100 / elapsed
     print(f"Env Performance: {steps_per_sec:.2f} steps/sec")
     assert steps_per_sec > 1000  # meaningful sanity limit
+
+
 def test_invalid_inputs():
     env = SupplyChainParallelEnv(get_config_path())
     env.reset()
-    assert not env.action_space('retailer').contains(-1)
+    assert not env.action_space("retailer").contains(-1)
     with pytest.raises(ValueError):
-        env.step({'retailer': -1})
+        env.step({"retailer": -1})

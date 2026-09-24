@@ -1,0 +1,17 @@
+
+Queueing evaluations for 10 Phase 10 models. Max 4 concurrently...
+Launching eval for phase10_gnn_mappo_baseline_s0...
+Launching eval for phase10_gnn_mappo_baseline_s1...
+Launching eval for phase10_gnn_mappo_baseline_s2...
+Launching eval for phase10_gnn_mappo_baseline_s3...
+Eval FAILED: phase10_gnn_mappo_baseline_s0. Check results/phase10/eval_phase10_gnn_mappo_baseline_s0.log
+Eval FAILED: phase10_gnn_mappo_baseline_s1. Check results/phase10/eval_phase10_gnn_mappo_baseline_s1.log
+Eval FAILED: phase10_gnn_mappo_baseline_s2. Check results/phase10/eval_phase10_gnn_mappo_baseline_s2.log
+Eval FAILED: phase10_gnn_mappo_baseline_s3. Check results/phase10/eval_phase10_gnn_mappo_baseline_s3.log
+Skipping evaluation for phase10_gnn_mappo_baseline_s4 (Manifest missing - training not complete?)
+Skipping evaluation for phase10_gnn_mappo_high_variance_s0 (Manifest missing - training not complete?)
+Skipping evaluation for phase10_gnn_mappo_high_variance_s1 (Manifest missing - training not complete?)
+Skipping evaluation for phase10_gnn_mappo_high_variance_s2 (Manifest missing - training not complete?)
+Skipping evaluation for phase10_gnn_mappo_high_variance_s3 (Manifest missing - training not complete?)
+Skipping evaluation for phase10_gnn_mappo_high_variance_s4 (Manifest missing - training not complete?)
+Phase 10 Evaluation Matrix Loop Complete.

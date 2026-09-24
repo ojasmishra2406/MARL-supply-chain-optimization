@@ -1,0 +1,8 @@
+# Demand Shift
+# Modifies the demand distribution (e.g. higher mean and standard deviation)
+demand:
+  distribution: normal
+  mean: 30
+  std: 10
+  clip_at_zero: true
+  retailer_facing_only: true

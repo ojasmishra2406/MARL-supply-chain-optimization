@@ -1,0 +1,36 @@
+ablation_family: B_Forecasting_Combined
+algorithm: mappo
+architecture: gnn
+forecasting:
+  enabled: true
+  model: ma
+  horizon: 2
+gnn:
+  enabled: true
+communication:
+  enabled: false
+centralized_critic: true
+regime:
+- baseline
+- high_variance
+seed:
+- 0
+- 1
+- 2
+- 3
+- 4
+environment: configs/phase1_simulator.yaml
+evaluation_settings:
+  scenarios:
+  - in_distribution
+  - demand_shift
+  - demand_spike
+  - lead_time_shift
+  - capacity_disruption
+  - combined_shift
+  eval_seeds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4

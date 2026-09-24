@@ -1,0 +1,7 @@
+# Lead-Time Shift
+# Modifies lead times across the supply chain
+lead_time:
+  - 4
+  - 4
+  - 5
+  - 6

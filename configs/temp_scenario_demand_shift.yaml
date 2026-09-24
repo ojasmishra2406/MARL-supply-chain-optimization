@@ -1,0 +1,23 @@
+capacity:
+  units_per_step_per_echelon: 100
+cost:
+  backlog: 2.0
+  holding: 1.0
+  ordering: 0.5
+demand:
+  clip_at_zero: true
+  distribution: normal
+  mean: 30
+  retailer_facing_only: true
+  std: 10
+echelons:
+- retailer
+- wholesaler
+- distributor
+- manufacturer
+horizon: 52
+lead_time:
+- 2
+- 2
+- 3
+- 4

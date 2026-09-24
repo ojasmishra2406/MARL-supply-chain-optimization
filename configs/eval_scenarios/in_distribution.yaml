@@ -1,0 +1,8 @@
+# In-Distribution (Control)
+# Identical to Phase 1 canonical settings.
+demand:
+  distribution: normal
+  mean: 20
+  std: 5
+  clip_at_zero: true
+  retailer_facing_only: true

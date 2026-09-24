@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 import numpy as np
 import yaml
@@ -110,7 +110,7 @@ class SupplyChainSimulator:
             total_cost=self.state.total_cost,
         )
 
-    def step(self, actions: List[int]) -> Tuple[SimulatorState, Dict[str, Any], bool]:
+    def step(self, actions: list[int]) -> tuple[SimulatorState, dict[str, Any], bool]:
         """
         Transition semantics within a step:
         1. demand (retailer generates external demand, others receive order from downstream as demand)
@@ -132,9 +132,30 @@ class SupplyChainSimulator:
                 raise ValueError("Actions must be non-negative integers")
 
         # 1. Demand generation
-        customer_demand = int(
-            np.round(self.rng.normal(self.demand_mean, self.demand_std))
-        )
+        base_demand = self.rng.normal(self.demand_mean, self.demand_std)
+        
+        # Add trend
+        if "trend" in self.config.get("demand", {}):
+            base_demand += self.config["demand"]["trend"] * self.current_step
+            
+        # Add seasonality
+        if "seasonality" in self.config.get("demand", {}):
+            period = self.config["demand"]["seasonality"].get("period", 12)
+            amplitude = self.config["demand"]["seasonality"].get("amplitude", 10)
+            base_demand += amplitude * np.sin(2 * np.pi * self.current_step / period)
+            
+        # Add spike/shock
+        if "spike" in self.config:
+            if isinstance(self.config["spike"], dict):
+                if self.current_step == self.config["spike"].get("step", -1):
+                    base_demand += self.config["spike"].get("magnitude", 0)
+            elif isinstance(self.config["spike"], list):
+                for spike in self.config["spike"]:
+                    if self.current_step == spike.get("step", -1):
+                        base_demand += spike.get("magnitude", 0)
+
+        customer_demand = int(np.round(base_demand))
+        
         if self.clip_demand and customer_demand < 0:
             customer_demand = 0
 
@@ -196,7 +217,7 @@ class SupplyChainSimulator:
 
         return self._get_state_copy(), info, done
 
-    def serialize_trajectory(self, actions_sequence: List[List[int]]) -> bytes:
+    def serialize_trajectory(self, actions_sequence: list[list[int]]) -> bytes:
         """
         Produce a deterministic byte representation of the state trajectory
         for the given action sequence. Used for the determinism test.
