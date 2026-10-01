@@ -6,7 +6,7 @@ import torch.nn as nn
 from rl.phase10_agent import Phase10Agent
 from envs.supply_chain_env import SupplyChainParallelEnv
 from forecasting.wrapper import DemandForecastWrapper
-from forecasting.models import NaiveForecaster, MovingAverageForecaster
+from forecasting.models import NaiveForecaster, MovingAverageForecaster, XGBoostForecaster
 import supersuit as ss
 import tempfile
 
@@ -37,6 +37,14 @@ class Phase11Trainer:
         # Forecasting setup
         if forecaster_type == "naive":
             self.forecaster = NaiveForecaster()
+        elif forecaster_type == "xgboost":
+            self.forecaster = XGBoostForecaster(window=5)
+            # Need to fit the xgboost model or load it. 
+            # In forecasting/models.py, it expects fit().
+            # Assuming train_demand.csv is the standard distribution
+            import pandas as pd
+            df = pd.read_csv("data/forecasting/train_demand.csv")
+            self.forecaster.fit(df["demand"].values)
         else:
             self.forecaster = MovingAverageForecaster(window=5)
             

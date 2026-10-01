@@ -4,7 +4,7 @@ import plotly.express as px
 import sys
 import os
 sys.path.append(os.path.dirname(__file__))
-from data_loader import load_registry, load_evaluations, load_statistical_analysis, generate_trajectory
+from data_loader import load_registry, load_evaluations, load_statistical_analysis, generate_trajectory, load_phase13_report
 
 st.set_page_config(page_title="MARL Supply Chain Dashboard", layout="wide")
 
@@ -146,26 +146,38 @@ elif page == "Live Simulation Replay":
             with st.spinner("Generating trajectory..."):
                 try:
                     traj_df = generate_trajectory(selected_model, selected_scenario, selected_seed, registry)
-                    st.success("Trajectory generated successfully (Mocked for dashboard structure demonstration).")
                     
-                    st.subheader("Agent Inventory Over Time")
-                    fig1 = px.line(traj_df, x="step", y="inventory", color="agent", title="Inventory Levels")
-                    st.plotly_chart(fig1, use_container_width=True)
-                    
-                    st.subheader("Agent Actions (Order Quantities)")
-                    fig2 = px.line(traj_df, x="step", y="action", color="agent", title="Replenishment Orders")
-                    st.plotly_chart(fig2, use_container_width=True)
+                    if "error" in traj_df.columns:
+                        st.error(traj_df.iloc[0]["error"])
+                    else:
+                        st.success("Trajectory generated successfully from real model evaluation.")
+                        
+                        st.subheader("Agent Inventory Over Time")
+                        fig1 = px.line(traj_df, x="step", y="inventory", color="agent", title="Inventory Levels")
+                        st.plotly_chart(fig1, use_container_width=True)
+                        
+                        st.subheader("Agent Actions (Order Quantities)")
+                        fig2 = px.line(traj_df, x="step", y="action", color="agent", title="Replenishment Orders")
+                        st.plotly_chart(fig2, use_container_width=True)
                 except Exception as e:
                     st.error(f"Failed to run simulation: {e}")
     else:
         st.warning("No trained models available in registry.")
 
 elif page == "Statistical Results":
-    st.title("Phase 8 Statistical Results")
-    st.markdown("Authoritative statistical output from the Phase 8 analysis pipeline.")
+    st.title("Phase 8 & Phase 13 Statistical Results")
     
-    stats_md = load_statistical_analysis()
-    st.markdown(stats_md)
+    tab1, tab2 = st.tabs(["Phase 13 (Forecasting vs Baseline)", "Phase 8 (GNN vs MLP)"])
+    
+    with tab1:
+        st.markdown("Authoritative statistical output from the Phase 12/13 ablation pipeline.")
+        stats_md = load_phase13_report()
+        st.markdown(stats_md)
+        
+    with tab2:
+        st.markdown("Authoritative statistical output from the Phase 8 analysis pipeline.")
+        stats_md_8 = load_statistical_analysis()
+        st.markdown(stats_md_8)
     
 elif page == "Reproducibility":
     st.title("Reproducibility Information")

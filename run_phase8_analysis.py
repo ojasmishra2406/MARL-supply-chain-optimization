@@ -60,10 +60,25 @@ def main():
                 condition = "baseline"
                 algo = algo.replace("_baseline", "")
                 
+            # Extract proper train_seed from checkpoint path instead of using eval_seed
+            ckpt_path = data.get("checkpoint")
+            train_seed = 0
+            if ckpt_path and "_s" in ckpt_path:
+                try:
+                    train_seed = int(ckpt_path.split("_s")[-1].replace(".pt", ""))
+                except:
+                    pass
+            elif "OUT" in algo.upper():
+                # OUT baseline doesn't train, its 'seed' is just scenario seed. We can treat eval_seed as train_seed or just use 0.
+                # Usually OUT has 5 seeds.
+                train_seed = int(data.get("seed", 0))
+            else:
+                train_seed = int(data.get("seed", 0)) # fallback
+                
             records.append({
                 "algorithm": algo,
                 "condition": condition,
-                "train_seed": int(data.get("seed", 0)),
+                "train_seed": train_seed,
                 "scenario": data["scenario"],
                 "cost": data["cost"],
                 "fill_rate": data["fill_rate"],

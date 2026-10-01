@@ -35,11 +35,12 @@ def check_imports_in_file(filepath, forbidden_modules):
 
 def test_no_data_leakage():
     # Only RL training/tuning code must be verified.
-    # So we scan rl/ directory.
-    rl_files = get_all_python_files('rl', exclude_dirs=[])
+    # So we scan rl/ directory, but exclude evaluation logic
+    rl_files = [f for f in get_all_python_files('rl', exclude_dirs=[]) if 'eval' not in os.path.basename(f)]
     
     # We must also scan root-level training scripts like run_phase5.py
-    root_files = [f for f in os.listdir('.') if f.endswith('.py') and 'run' in f and 'phase7' not in f]
+    # Exclude any scripts that have 'eval' in the name.
+    root_files = [f for f in os.listdir('.') if f.endswith('.py') and 'run' in f and 'eval' not in f and 'phase7' not in f]
     
     all_files = rl_files + root_files
     

@@ -1777,5 +1777,29 @@
             "results/phase7\\phase6_mappo_comm_high_variance_s4_lead_time_shift_evals3.json",
             "results/phase7\\phase6_mappo_comm_high_variance_s4_lead_time_shift_evals4.json"
         ]
+    },
+    "phase6_mappo_comm_baseline_s1": {
+        "model_id": "phase6_mappo_comm_baseline_s1",
+        "algorithm": "mappo_comm",
+        "condition": "baseline",
+        "training_seed": 1,
+        "config_path": "configs/phase4_ippo.yaml",
+        "checkpoint_path": "results/phase6/phase6_mappo_comm_baseline_s1.pt",
+        "checkpoint_sha256": "c0cb7d81c3d61a91a4b37e726782a560bac604dcf517568cacb9e1b273d103bf",
+        "status": "VALID",
+        "evaluations_count": 30,
+        "evaluations_references": []
+    },
+    "phase6_mappo_comm_baseline_s2": {
+        "model_id": "phase6_mappo_comm_baseline_s2",
+        "algorithm": "mappo_comm",
+        "condition": "baseline",
+        "training_seed": 2,
+        "config_path": "configs/phase4_ippo.yaml",
+        "checkpoint_path": "results/phase6/phase6_mappo_comm_baseline_s2.pt",
+        "checkpoint_sha256": "cf2b14e3dc93fc9f35cc60aeb0f77dd06a8f81affaf89d7f9f520eb9f48f0353",
+        "status": "VALID",
+        "evaluations_count": 30,
+        "evaluations_references": []
     }
 }

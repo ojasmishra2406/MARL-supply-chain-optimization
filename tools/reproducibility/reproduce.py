@@ -33,13 +33,15 @@ def reproduce_model(model_id, registry_path="models/registry.json", smoke_test=T
         
     reg = registry[model_id]
     
-    if reg["status"] not in ["TRAINED", "EVALUATED"]:
+    if reg["status"] not in ["TRAINED", "EVALUATED", "VALID"]:
         raise ValueError(f"Cannot reproduce model with status: {reg['status']}")
         
-    ckpt_path = reg["actual_checkpoint"]
-    manifest_path = reg["manifest_path"]
-    config_path = reg["metadata"].get("config_path", "configs/phase4_ippo.yaml")
-    algo = reg["metadata"].get("algorithm", "ippo")
+    ckpt_path = reg.get("actual_checkpoint", reg.get("checkpoint_path"))
+    manifest_path = reg.get("manifest_path", reg.get("metadata", {}).get("manifest_path"))
+    if manifest_path is None and ckpt_path:
+        manifest_path = ckpt_path.replace(".pt", "_manifest.json")
+    config_path = reg.get("config_path", reg.get("metadata", {}).get("config_path", "configs/phase4_ippo.yaml"))
+    algo = reg.get("algorithm", reg.get("metadata", {}).get("algorithm", "ippo"))
     
     print(f"Reproducing {model_id} (Algorithm: {algo})...")
     
