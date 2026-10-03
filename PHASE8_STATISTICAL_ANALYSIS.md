@@ -1,6 +1,6 @@
 # Phase 8: Statistical Analysis & Experimental Validation
 
-Date: 2026-10-01T12:17:14.723606
+Date: 2026-10-02T10:07:34.746110
 
 
 ## 1. Experimental Setup
@@ -53,12 +53,12 @@ Date: 2026-10-01T12:17:14.723606
 | mappo       | high_variance | demand_spike        |         5 |     45113   |   3948.43  |         0.924316 |     0.0604148   |
 | mappo       | high_variance | in_distribution     |         5 |     33581.1 |   1459.15  |         0.99513  |     0.00299273  |
 | mappo       | high_variance | lead_time_shift     |         5 |     62555.9 |   2744.34  |         0.929762 |     0.0710071   |
-| mappo_comm  | baseline      | capacity_disruption |         4 |    291594   |  23067.3   |         0.889487 |     0           |
-| mappo_comm  | baseline      | combined_shift      |         4 |    108810   |  12915.6   |         0.945209 |     0.0310726   |
-| mappo_comm  | baseline      | demand_shift        |         4 |     73990.7 |   5320.05  |         0.924101 |     0.0180591   |
-| mappo_comm  | baseline      | demand_spike        |         4 |     56401.4 |   5160.85  |         0.86809  |     0.0327038   |
-| mappo_comm  | baseline      | in_distribution     |         4 |     31684.9 |   2150.37  |         0.997829 |     0.00251032  |
-| mappo_comm  | baseline      | lead_time_shift     |         4 |     63313.6 |   5651.38  |         0.957591 |     0.0411171   |
+| mappo_comm  | baseline      | capacity_disruption |         5 |    276530   |  39161.9   |         0.889487 |     0           |
+| mappo_comm  | baseline      | combined_shift      |         5 |    105670   |  13207     |         0.898743 |     0.10733     |
+| mappo_comm  | baseline      | demand_shift        |         5 |     73394.8 |   4796.08  |         0.893865 |     0.0693949   |
+| mappo_comm  | baseline      | demand_spike        |         5 |     56754.4 |   4538.59  |         0.869777 |     0.0285725   |
+| mappo_comm  | baseline      | in_distribution     |         5 |     33036.8 |   3550.6   |         0.995406 |     0.00583879  |
+| mappo_comm  | baseline      | lead_time_shift     |         5 |     66837.9 |   9276.71  |         0.934737 |     0.0622861   |
 | mappo_comm  | high_variance | capacity_disruption |         5 |    236889   |  41118.1   |         0.886709 |     0.00621152  |
 | mappo_comm  | high_variance | combined_shift      |         5 |     97556.4 |   5341.54  |         0.717431 |     0.172349    |
 | mappo_comm  | high_variance | demand_shift        |         5 |     66738.2 |   8099.44  |         0.748143 |     0.176079    |
@@ -76,16 +76,16 @@ Date: 2026-10-01T12:17:14.723606
 
 ## 3. Statistical Testing (Welch's t-test, BH-FDR Corrected)
 
-| name                                                         |          p |         t |         d |   n1 |   n2 |    mean1 |    mean2 |     adj_p |
-|:-------------------------------------------------------------|-----------:|----------:|----------:|-----:|-----:|---------:|---------:|----------:|
-| IPPO vs MAPPO (Baseline, In-Distribution)                    | 0.0168416  | -3.23485  | -2.0459   |    5 |    5 |  28184.2 |  32882.1 | 0.0673663 |
-| IPPO vs IPPO_COMM (Baseline, In-Distribution)                | 0.843424   |  0.206427 |  0.130556 |    5 |    5 |  28184.2 |  28022   | 0.843424  |
-| MAPPO vs MAPPO_COMM (Baseline, In-Distribution)              | 0.495295   |  0.719264 |  0.466204 |    5 |    4 |  32882.1 |  31684.9 | 0.660394  |
-| IPPO (Base) vs IPPO (High Var) (In-Distribution)             | 0.717556   | -0.376273 | -0.237976 |    5 |    5 |  28184.2 |  28508.4 | 0.820064  |
-| MAPPO_COMM (Base) vs MAPPO_COMM (High Var) (In-Distribution) | 0.097967   | -1.98256  | -1.37253  |    4 |    5 |  31684.9 |  34280.6 | 0.261245  |
-| IPPO vs MAPPO (Baseline, Combined Shift)                     | 0.00178698 | -4.62457  | -2.92484  |    5 |    5 |  87149.6 | 102466   | 0.0142959 |
-| IPPO vs IPPO_COMM (Baseline, Combined Shift)                 | 0.470186   |  0.760537 |  0.481006 |    5 |    5 |  87149.6 |  84431.2 | 0.660394  |
-| MAPPO vs MAPPO_COMM (Baseline, Combined Shift)               | 0.41263    | -0.916219 | -0.671245 |    5 |    4 | 102466   | 108810   | 0.660394  |
+| name                                                         |          p |          t |          d |   n1 |   n2 |    mean1 |    mean2 |     adj_p |
+|:-------------------------------------------------------------|-----------:|-----------:|-----------:|-----:|-----:|---------:|---------:|----------:|
+| IPPO vs MAPPO (Baseline, In-Distribution)                    | 0.0168416  | -3.23485   | -2.0459    |    5 |    5 |  28184.2 |  32882.1 | 0.0673663 |
+| IPPO vs IPPO_COMM (Baseline, In-Distribution)                | 0.843424   |  0.206427  |  0.130556  |    5 |    5 |  28184.2 |  28022   | 0.941296  |
+| MAPPO vs MAPPO_COMM (Baseline, In-Distribution)              | 0.941296   | -0.0760996 | -0.0481296 |    5 |    5 |  32882.1 |  33036.8 | 0.941296  |
+| IPPO (Base) vs IPPO (High Var) (In-Distribution)             | 0.717556   | -0.376273  | -0.237976  |    5 |    5 |  28184.2 |  28508.4 | 0.941296  |
+| MAPPO_COMM (Base) vs MAPPO_COMM (High Var) (In-Distribution) | 0.506459   | -0.70877   | -0.448265  |    5 |    5 |  33036.8 |  34280.6 | 0.941296  |
+| IPPO vs MAPPO (Baseline, Combined Shift)                     | 0.00178698 | -4.62457   | -2.92484   |    5 |    5 |  87149.6 | 102466   | 0.0142959 |
+| IPPO vs IPPO_COMM (Baseline, Combined Shift)                 | 0.470186   |  0.760537  |  0.481006  |    5 |    5 |  87149.6 |  84431.2 | 0.941296  |
+| MAPPO vs MAPPO_COMM (Baseline, Combined Shift)               | 0.637131   | -0.499544  | -0.315939  |    5 |    5 | 102466   | 105670   | 0.941296  |
 
 
 
@@ -102,7 +102,7 @@ Comparing relative degradation from `in_distribution` to `combined_shift`.
 | ippo_comm   | high_variance |        28293.2 |        85794   | 203.23%       |
 | mappo       | baseline      |        32882.1 |       102466   | 211.62%       |
 | mappo       | high_variance |        33581.1 |       100837   | 200.28%       |
-| mappo_comm  | baseline      |        31684.9 |       108810   | 243.41%       |
+| mappo_comm  | baseline      |        33036.8 |       105670   | 219.85%       |
 | mappo_comm  | high_variance |        34280.6 |        97556.4 | 184.58%       |
 | out         | baseline      |       180330   |       161318   | -10.54%       |
 
