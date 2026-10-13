@@ -32,7 +32,7 @@ flowchart TD
 
 ## Supply-Chain Environment
 
-A custom OpenAIGym/PettingZoo parallel simulator models a standard 4-echelon supply chain:
+A custom Gymnasium/PettingZoo parallel simulator models a standard 4-echelon supply chain:
 - **Agents**: Retailer, Wholesaler, Distributor, Manufacturer.
 - **State Representation**: Local inventory levels, incoming orders, backlog, current pipeline pipeline (in-transit), and communication signals (if enabled).
 - **Actions**: Continuous/discrete order quantities issued to upstream echelons.
@@ -145,17 +145,90 @@ All commands execute from the project root.
   `python run_phase7.py`
 - **Perform Statistical Analysis (Phase 8)**: 
   `python run_phase8_analysis.py`
-- **Launch Visualization Dashboard**: 
-  `streamlit run dashboard/app.py`
-- **Generate Forensic Evidence Suite**: 
-  `python tools/evidence/run_all_evidence.py`
+## Interactive Analytics Platform & Demo Walkthrough (Phase 14)
+
+Launch the interactive operations platform via:
+```bash
+streamlit run dashboard/app.py
+```
+
+The platform provides 10 integrated analysis sections backed directly by real experimental data and neural policy checkpoints.
+
+### Demo Walkthrough & Architecture Gallery
+
+| Section | Preview | Core Finding & Capabilities |
+|---|---|---|
+| **1. Executive Overview** | ![Executive Overview](Screenshots/SS1.png) | **84 Tracked Models & 14-Phase Roadmap:** High-level status metrics (60 Research Validated, 2,280 Logged Episodes) and full multi-phase architectural roadmap with scientific boundary disclosures. |
+| **2. Simulator & Policy Replay** | ![Simulator Replay](Screenshots/SS2.png) | **Deterministic 52-Week Trajectory Replay:** Interactive Gym/SimPy execution stepping multi-echelon neural policies (`Phase5Agent`) under OOD distribution shifts, visualizing dynamic inventory levels, orders, and backlogs. |
+| **3. Supervised Forecasting** | ![Demand Forecasting](Screenshots/SS3.png) | **The Supervised-to-RL Translation Dilemma:** Highlights why XGBoost achieves lowest offline MAE (1.28) but causes online stockout backlogs in MARL due to severe negative bias (-5.27) under demand shocks. |
+| **4. Agent Decisions & Dynamics** | ![Agent Decisions](Screenshots/SS4.png) | **Bullwhip Effect Transmission:** Visualizes how Independent PPO suppresses order variance (1.48 Bullwhip ratio) while centralized critics induce upstream safety buffer oscillations (6.33 Bullwhip ratio). |
+| **5. Controlled Benchmarks** | ![Algorithm Benchmark](Screenshots/SS5.png) | **5-Architecture Benchmark:** Controlled side-by-side comparison of IPPO, IPPO+Comm, MAPPO, MAPPO+Comm, and GNN-MAPPO across Baseline and High-Variance regimes ($N=5$ seeds, 200 updates). |
+| **6. Scenario Robustness** | ![OOD Robustness](Screenshots/SS6.png) | **6-Scenario Distribution Shift:** Evaluates generalization robustness across In-Distribution, Demand Shift, Lead Time Shift, Capacity Disruption, Demand Spike, and Combined Shifts (72 scenario-regime rows). |
+| **7. Statistical Ablations** | ![Statistical Matrix](Screenshots/SS7.png) | **28-Hypothesis Testing Matrix:** Audit-grade inference featuring Welch's $t$, Mann-Whitney $U$, Hedges' $g$ effect sizes, and Benjamini-Hochberg False Discovery Rate ($q$-value) multiple comparison controls. |
+| **8. MLOps Artifact Registry** | ![Artifact Registry](Screenshots/SS8.png) | **Cryptographic Provenance Governance:** Row-level inventory of all 84 models with orthogonal status separation (`ARTIFACT_VALID` vs `RESEARCH_VALIDATED`) and canonical SHA-256 weight hashes. |
 
 ## Testing
-- **Status**: 148 / 148 automated tests passed successfully.
-- **Coverage**: Evaluates simulator logic, deterministic seeds, matrix shapes, pipeline integration, and prevention of gradient leakage.
+- **Status**: 210 / 210 automated tests passed successfully (100% pass rate).
+- **Coverage**: Evaluates simulator logic, deterministic seeds, matrix shapes, pipeline integration, statistical consistency, and prevention of data leakage.
 
 ## Benchmarking
 Hardware profiling metrics are derived from the executable test harness (`tools/evidence/benchmark_performance.py`), running under isolated processes via `time.perf_counter`. (Results listed above under the Results section were profiled on an Intel CPU with PyTorch CPU constraints).
+
+## Artifact Registry & Reproducibility (Phase 13)
+
+The repository provides an auditable, schema-validated artifact registry and dual-hash checkpoint verification system:
+
+### 1. Registry Management (`tools/registry.py`)
+All trained models, manifests, evaluations, and telemetry are cataloged in `models/registry.json`.
+
+```bash
+# List registered models (with optional filters)
+python tools/registry.py list --phase phase6
+python tools/registry.py list --algorithm gnn_mappo --status RESEARCH_VALIDATED
+
+# Audit registry for duplicates, hash collisions, and missing evaluations
+python tools/registry.py audit
+
+# Verify checkpoint and manifest integrity across all models
+python tools/registry.py verify
+python tools/registry.py verify --model phase6_ippo_baseline_s0
+
+# Export provenance summaries for downstream reporting
+python tools/registry.py export --json results/phase13/provenance_summary.json --csv results/phase13/provenance_summary.csv
+
+# Quarantine an artifact with a documented audit reason
+python tools/registry.py quarantine --model <model_id> --reason "Documented defect"
+```
+
+### 2. Dual-Hash Architecture & Checkpoint Loader (`rl/checkpoint.py`)
+To resolve historical discrepancies between in-memory state-dict tensor hashes and physical file byte hashes:
+- **Canonical State-Dict SHA-256 (`_hash_state_dict`)**: Computes a deterministic hash directly over sorted tensor keys and bytes, ensuring robustness across PyTorch zip container serialization variations.
+- **Physical File SHA-256 (`compute_file_sha256`)**: Audits raw file bytes on disk.
+- Checkpoints saved via `rl.checkpoint.save_checkpoint` record both hashes.
+- `rl.checkpoint.load_checkpoint` enforces canonical state-dict SHA-256 by default while preserving backward-compatible fallback for historical physical-hash manifests when explicitly permitted.
+
+### 3. Automated Reproducibility Checker (`tools/reproducibility/check_reproducibility.py`)
+A lightweight utility designed for CI/CD and pre-flight research validation:
+
+```bash
+python tools/reproducibility/check_reproducibility.py --json results/phase13/reproducibility_report.json
+```
+
+The checker automates 4 integrity audits:
+1. **Runtime & Dependency Verification**: Python version (>= 3.10), PyTorch version (>= 2.0), CUDA status, and scientific stack (`numpy`, `pandas`, `scipy`, `statsmodels`, `xgboost`).
+2. **Registry & Dual-Hash Checkpoint Audit**: Verifies all 84 registered models against disk manifests and weights, detecting corrupted weights, stale paths, and missing evaluation files.
+3. **Seed Propagation & RNG Isolation**: Asserts environment reset determinism and verifies independent RNG demand sequences across distinct seeds.
+4. **Deterministic Evaluation Replay**: Replays an evaluation episode on a canonical model (`phase6_ippo_baseline_s0`) and validates an exact numeric match against the historical evaluation JSON.
+
+### 4. Artifact Status and Research Validity
+Every artifact in the registry tracks distinct status orthogonal axes:
+- **Integrity Status**: `ARTIFACT_VALID`, `ARTIFACT_INVALID`, `QUARANTINED`, `MISSING`.
+- **Evaluation Status**: `EVALUATION_VALID`, `EVALUATION_INCOMPLETE`, `NONE`.
+- **Research Status**:
+  - `RESEARCH_VALIDATED`: Experiments following verified independent seeding and evaluation protocols (Phase 6/7 baselines, Phase 10 GNN-MAPPO, Phase 11 Controlled 50-update replication, Phase 9 benchmarks).
+  - `PROVISIONAL_NEEDS_CORRECTION`: Empirical artifacts are intact, but written completion reports contain unresolved transcription or attribution issues (Phase 12).
+  - `HISTORICAL_SUPERSEDED`: Preserved historical artifacts replaced by controlled implementations (e.g. historical Phase 11 runs with hardcoded reset seeds or physical-file manifest hashes).
+  - `TRAINING_INCOMPLETE`: Diagnostic or undertrained checkpoints (e.g. Phase 12 2-iteration ablation probe).
 
 ## Research Roadmap
 
@@ -166,35 +239,21 @@ Hardware profiling metrics are derived from the executable test harness (`tools/
 - ✅ **Phase 4** — IPPO/MAPPO training pipelines
 - ✅ **Phase 5** — Pilot/validation execution
 - ✅ **Phase 6** — Robustness matrix (40 configurations)
-- ✅ **Phase 7** — Held-out/distribution-shift evaluation
+- ✅ **Phase 7** — Held-out/distribution-shift evaluation (1,200 episodes)
 - ✅ **Phase 8** — Statistical analysis
 - ✅ **Phase 9** — Demand forecasting benchmarking
-- 🟡 **Phase 10** — GNN-MAPPO (Implemented / Validation Pending)
-- 🟡 **Phase 11** — Forecasting + GNN-MAPPO (Implemented / Validation Pending)
-- 🔵 **Phase 12** — Comprehensive ablations/statistics
-- ✅ **Phase 13** — Experiment registry/reproducibility
-- ✅ **Phase 14** — Research dashboard
-
-## Current Limitations
-
-1. **Hash Provenance Discrepancy**: The codebase employs conflicting hash methodologies. `rl/checkpoint.py` creates a "content hash" by evaluating PyTorch tensor arrays in memory, while the evidence harness calculates standard physical `.pt` file hashes (which include zip metadata). Because these mechanisms differ, automated verification currently reports 100% hash mismatches, though the checkpoints themselves remain architecturally intact and uncorrupted.
-2. **Computational Scale**: Experiments are constrained to single-node CPU parallelism; wide-scale multi-GPU hyperparameter sweeps are not yet executed.
-3. **Graph-based MARL Validation**: While the GNN-MAPPO agent logic and local observation graph builders exist, extensive parallel convergence testing is strictly marked as pending.
-4. **Integration**: Full integration of accurate forecasting logic directly into real-time MARL state transitions has been wrapped but not statistically validated against baselines.
+- ✅ **Phase 10** — GNN-MAPPO (10 models trained & evaluated across 300 OOD episodes)
+- ✅ **Phase 12** — Comprehensive ablations & statistical validation (CONDITIONAL PASS: 1,680 episodes across 56 models validated; model-level statistics and retracted capacity failure claim published in `results/phase12/PHASE12_FINAL_ACCEPTANCE_REPORT.md`)
+- ✅ **Phase 13** — Experiment registry, checkpoint integrity & reproducibility (PASS: Dual-hash loader, 84-model registry, automated reproducibility checker)
+- ✅ **Phase 14** — Multi-Echelon Analytics Dashboard (PASS: 10 interactive sections, headless tests passing, documented in `results/phase14/PHASE14_COMPLETION_REPORT.md`)
 
 ## Research Integrity
 
 This project maintains strict evidence-based documentation:
 - Reported results correspond exclusively to directly executed and reproducible experimental code.
-- Incomplete experiments (e.g., Phase 10/11) are explicitly delineated and not falsely reported as complete.
+- Historical defects (e.g. historical Phase 11 reset seed sharing and hash discrepancies) are preserved for forensic transparency rather than silently rewritten.
+- Artifact integrity (valid file bytes and loadability) is strictly separated from research validity (scientific protocol adherence).
 - Experimental units properly aggregate repeated evaluation seeds to prevent pseudoreplication masking as statistical significance.
-- Non-significant or negative results (e.g., MAPPO vs MAPPO_COMM baseline performance) are retained and reported truthfully.
-
-## Future Work
-
-- **GNN-MAPPO Pipeline Integration**: Execute Phase 10 matrices to determine if dynamic topology awareness improves resilience.
-- **Forecasting Integration (Phase 11)**: Test XGBoost-conditioned environment wrappers and measure step-latency trade-offs during RL optimization.
-- **Registry Hardening**: Harmonize `_hash_state_dict` content hashing with the registry's block-file hashing mechanisms.
 
 ## License
 

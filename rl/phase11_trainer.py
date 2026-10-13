@@ -11,9 +11,18 @@ import supersuit as ss
 import tempfile
 
 class Phase11Trainer:
-    def __init__(self, config_path, ablation_config=None, forecast_horizon=2, forecaster_type="ma"):
+    def __init__(self, config_path, ablation_config=None, forecast_horizon=2, forecaster_type="ma", seed=None):
         self.ablation = ablation_config or {}
+        self.seed = seed if seed is not None else self.ablation.get("seed", 42)
         
+        # Explicitly seed all RNG sources before initialization
+        import random
+        random.seed(self.seed)
+        np.random.seed(self.seed)
+        torch.manual_seed(self.seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(self.seed)
+            
         with open(config_path, "r") as f:
             self.config = yaml.safe_load(f)
             
@@ -79,7 +88,7 @@ class Phase11Trainer:
         }
         
         print("Resetting env...")
-        obs, _ = self.env.reset(seed=42)
+        obs, _ = self.env.reset(seed=self.seed)
         print("Done init.")
         self.next_obs = obs
         
@@ -104,6 +113,28 @@ class Phase11Trainer:
         state_dicts = torch.load(path, map_location=self.device)
         for a in self.agents_names:
             self.agents[a].load_state_dict(state_dicts[a])
+
+    def save_checkpoint(self, checkpoint_path, manifest_path, extra_metadata=None):
+        """Save canonical checkpoint with SHA-256 tensor manifest via rl.checkpoint."""
+        from rl.checkpoint import save_checkpoint
+        state_dict = {a: self.agents[a].state_dict() for a in self.agents_names}
+        meta = {
+            "algorithm": "gnn_mappo",
+            "obs_dim": self.obs_dim,
+            "global_obs_dim": self.global_obs_dim,
+            "seed": self.seed,
+        }
+        if extra_metadata:
+            meta.update(extra_metadata)
+        return save_checkpoint(state_dict, checkpoint_path, manifest_path, extra_metadata=meta)
+
+    def load_checkpoint(self, checkpoint_path, manifest_path):
+        """Load and verify checkpoint via canonical rl.checkpoint loader."""
+        from rl.checkpoint import load_checkpoint
+        state_dicts = load_checkpoint(checkpoint_path, manifest_path)
+        for a in self.agents_names:
+            self.agents[a].load_state_dict(state_dicts[a])
+        return state_dicts
 
     def train(self, total_updates=1):
         rollout_length = self.config.get("rollout_length", 128)

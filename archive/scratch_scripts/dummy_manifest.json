@@ -1,0 +1,5 @@
+{
+  "checkpoint_path": "./dummy.pt",
+  "checkpoint_sha256": "e69182c0d575296df8e0d729f8abc60368adc3d851c2f6954672d7e309011d38",
+  "algo": "test"
+}
