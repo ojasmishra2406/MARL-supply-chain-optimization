@@ -1,0 +1,165 @@
+{
+  "model_architectures": {
+    "IPPO": {
+      "class": "IPPOAgent",
+      "total_parameters": 34819,
+      "trainable_parameters": 34819,
+      "obs_dim": 5,
+      "action_dim": 11,
+      "hidden_dim": 128,
+      "actor_layers": 3,
+      "critic_layers": 3,
+      "forward_pass": {
+        "label": "IPPO_actor",
+        "n_passes": 100,
+        "mean_ms": 0.1179,
+        "median_ms": 0.1149,
+        "p95_ms": 0.1411,
+        "p99_ms": 0.1543,
+        "min_ms": 0.1082,
+        "max_ms": 0.1572,
+        "passes_per_second": 8484.3
+      }
+    },
+    "MAPPO": {
+      "class": "MAPPOAgent",
+      "total_parameters": 36739,
+      "trainable_parameters": 36739,
+      "obs_dim": 5,
+      "global_obs_dim": 20,
+      "action_dim": 11,
+      "hidden_dim": 128,
+      "forward_pass": {
+        "label": "MAPPO_actor",
+        "n_passes": 100,
+        "mean_ms": 0.1287,
+        "median_ms": 0.1233,
+        "p95_ms": 0.1564,
+        "p99_ms": 0.1728,
+        "min_ms": 0.1133,
+        "max_ms": 0.173,
+        "passes_per_second": 7769.8
+      }
+    },
+    "IPPO_COMM": {
+      "class": "IPPOAgent",
+      "obs_dim": 13,
+      "total_parameters": 36867,
+      "trainable_parameters": 36867,
+      "forward_pass": {
+        "label": "IPPO_COMM_actor",
+        "n_passes": 100,
+        "mean_ms": 0.1372,
+        "median_ms": 0.1287,
+        "p95_ms": 0.1806,
+        "p99_ms": 0.2183,
+        "min_ms": 0.1191,
+        "max_ms": 0.2341,
+        "passes_per_second": 7289.2
+      }
+    },
+    "MAPPO_COMM": {
+      "class": "MAPPOAgent",
+      "obs_dim": 13,
+      "global_obs_dim": 52,
+      "total_parameters": 41859,
+      "trainable_parameters": 41859,
+      "forward_pass": {
+        "label": "MAPPO_COMM_actor",
+        "n_passes": 100,
+        "mean_ms": 0.1582,
+        "median_ms": 0.1304,
+        "p95_ms": 0.2497,
+        "p99_ms": 0.2611,
+        "min_ms": 0.1179,
+        "max_ms": 0.2733,
+        "passes_per_second": 6322.2
+      }
+    },
+    "GNN_MAPPO": {
+      "class_actor": "GNN_MAPPO_Actor",
+      "class_critic": "GNN_MAPPO_Critic",
+      "num_nodes": 4,
+      "node_feature_dim": 5,
+      "gnn_hidden_dim": 64,
+      "actor_parameters": 5259,
+      "critic_parameters": 21057,
+      "total_gnn_parameters": 26316,
+      "forward_pass_actor": {
+        "label": "GNN_MAPPO_actor",
+        "n_passes": 100,
+        "mean_ms": 0.0306,
+        "median_ms": 0.0303,
+        "p95_ms": 0.0311,
+        "p99_ms": 0.0426,
+        "min_ms": 0.029,
+        "max_ms": 0.0468,
+        "passes_per_second": 32671.2
+      }
+    }
+  },
+  "environment": {
+    "n_steps_measured": 5000,
+    "total_elapsed_seconds": 0.163,
+    "steps_per_second": 30642.2,
+    "mean_step_ms": 0.0326,
+    "p95_step_ms": 0.0586,
+    "reset_mean_ms": 0.0907,
+    "source": "SupplyChainParallelEnv with random actions"
+  },
+  "forecasting": {
+    "Naive": {
+      "class": "NaiveForecaster",
+      "predict_mean_ms": 0.0003,
+      "predict_p95_ms": 0.0004,
+      "MAE": 4.5106,
+      "RMSE": 5.3753,
+      "sMAPE": 23.0918,
+      "Bias": 0.0426
+    },
+    "MovingAverage": {
+      "class": "MovingAverageForecaster",
+      "predict_mean_ms": 0.0083,
+      "predict_p95_ms": 0.0092,
+      "MAE": 3.4723,
+      "RMSE": 4.1995,
+      "sMAPE": 17.9424,
+      "Bias": 0.0766
+    },
+    "ExpSmoothing": {
+      "class": "ExponentialSmoothingForecaster",
+      "predict_mean_ms": 0.1043,
+      "predict_p95_ms": 0.1916,
+      "MAE": 3.4209,
+      "RMSE": 4.1648,
+      "sMAPE": 17.6524,
+      "Bias": 0.1217
+    },
+    "XGBoost": {
+      "class": "XGBoostForecaster",
+      "fit_time_s": 0.302,
+      "predict_mean_ms": 0.4212,
+      "predict_p95_ms": 0.4659,
+      "MAE": 1.2778,
+      "RMSE": 1.5667,
+      "sMAPE": 6.8933,
+      "Bias": 0.0054
+    },
+    "LSTM": {
+      "class": "LSTMForecaster",
+      "fit_time_s": 2.929,
+      "predict_mean_ms": 0.9393,
+      "predict_p95_ms": 2.9645,
+      "MAE": 15.4634,
+      "RMSE": 15.9625,
+      "sMAPE": 126.1789,
+      "Bias": -15.4634
+    }
+  },
+  "failures": [],
+  "timestamp": "2026-10-02T07:44:51.559248Z",
+  "git_commit": "c9dcc3ef307603c4465f601342143de691890fc3",
+  "pytorch_version": "2.3.1+cu121",
+  "cuda_available": true,
+  "device": "cuda"
+}
