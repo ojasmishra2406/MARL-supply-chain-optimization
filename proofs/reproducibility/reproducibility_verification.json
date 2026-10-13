@@ -1,0 +1,79 @@
+{
+  "environment": {
+    "python": {
+      "version": "3.11.9",
+      "passed": true
+    },
+    "torch": {
+      "version": "2.3.1+cu121",
+      "cuda_available": true,
+      "passed": true
+    },
+    "numpy": {
+      "version": "1.26.4",
+      "passed": true
+    },
+    "pandas": {
+      "version": "2.2.1",
+      "passed": true
+    },
+    "scipy": {
+      "version": "1.11.4",
+      "passed": true
+    },
+    "statsmodels": {
+      "version": "0.14.1",
+      "passed": true
+    },
+    "xgboost": {
+      "version": "3.2.0",
+      "passed": true
+    },
+    "yaml": {
+      "version": "6.0.3",
+      "passed": true
+    }
+  },
+  "registry_integrity": {
+    "total_models": 84,
+    "valid_canonical": 65,
+    "valid_historical_physical": 15,
+    "valid_offline": 4,
+    "corrupted": 0,
+    "missing_paths": 0,
+    "missing_evals_count": 0,
+    "stale_paths_count": 0,
+    "duplicate_checkpoints_count": 0,
+    "passed": true
+  },
+  "seed_propagation": {
+    "deterministic_reproducibility": true,
+    "seed_entropy_independence": true,
+    "demands_seed42": [
+      22.0,
+      15.0,
+      24.0
+    ],
+    "demands_seed99": [
+      20.0,
+      18.0,
+      20.0
+    ],
+    "passed": true
+  },
+  "evaluation_replay": {
+    "model_id": "phase6_ippo_baseline_s0",
+    "scenario": "in_distribution",
+    "seed": 0,
+    "expected_cost": 27800.5,
+    "replayed_cost": 27800.5,
+    "cost_match": true,
+    "expected_fill_rate": 0.9897003745318352,
+    "replayed_fill_rate": 0.9897003745318352,
+    "fill_rate_match": true,
+    "expected_bullwhip": 2.497328401150842,
+    "replayed_bullwhip": 2.497328401150842,
+    "bullwhip_match": true,
+    "passed": true
+  }
+}

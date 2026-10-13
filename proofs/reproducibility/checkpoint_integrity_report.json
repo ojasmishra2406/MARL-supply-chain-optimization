@@ -1,0 +1,430 @@
+{
+  "total_audited": 84,
+  "valid_canonical": 65,
+  "valid_historical_physical": 15,
+  "valid_offline_benchmarks": 4,
+  "corrupted": 0,
+  "missing_files": 0,
+  "models": {
+    "phase10_gnn_mappo_baseline_s0": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase10_gnn_mappo_baseline_s1": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase10_gnn_mappo_baseline_s2": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase10_gnn_mappo_baseline_s3": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase10_gnn_mappo_baseline_s4": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase10_gnn_mappo_high_variance_s0": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase10_gnn_mappo_high_variance_s1": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase10_gnn_mappo_high_variance_s2": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase10_gnn_mappo_high_variance_s3": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase10_gnn_mappo_high_variance_s4": {
+      "phase": "phase10",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_controlled_ma_s1": {
+      "phase": "phase11_controlled",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_controlled_ma_s2": {
+      "phase": "phase11_controlled",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_controlled_ma_s3": {
+      "phase": "phase11_controlled",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_controlled_ma_s42_smoke": {
+      "phase": "phase11_controlled",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_controlled_xgboost_s1": {
+      "phase": "phase11_controlled",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_controlled_xgboost_s2": {
+      "phase": "phase11_controlled",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_controlled_xgboost_s3": {
+      "phase": "phase11_controlled",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_controlled_xgboost_s42_smoke": {
+      "phase": "phase11_controlled",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_genuine_xgboost_s0": {
+      "phase": "phase11_historical",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_genuine_xgboost_s1": {
+      "phase": "phase11_historical",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_genuine_xgboost_s2": {
+      "phase": "phase11_historical",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_genuine_xgboost_s3": {
+      "phase": "phase11_historical",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_genuine_xgboost_s4": {
+      "phase": "phase11_historical",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_ma_s0": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_ma_s1": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_ma_s124": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "INCOMPLETE (0/30)"
+    },
+    "phase11_gnn_mappo_forecast_ma_s2": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_ma_s3": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_ma_s4": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_xgboost_s0": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_xgboost_s1": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_xgboost_s100": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_xgboost_s101": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_xgboost_s123": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "INCOMPLETE (0/30)"
+    },
+    "phase11_gnn_mappo_forecast_xgboost_s2": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_xgboost_s3": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_xgboost_s4": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase11_gnn_mappo_forecast_xgboost_s999": {
+      "phase": "phase11_historical",
+      "status": "VALID_HISTORICAL_PHYSICAL",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase12_ablation_mappo_comm_2iters": {
+      "phase": "phase12",
+      "status": "VALID",
+      "eval_completeness": "NOT_APPLICABLE"
+    },
+    "phase4_final_random_init": {
+      "phase": "phase4",
+      "status": "VALID",
+      "eval_completeness": "NOT_APPLICABLE"
+    },
+    "phase6_ippo_baseline_s0": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_baseline_s1": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_baseline_s2": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_baseline_s3": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_baseline_s4": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_baseline_s0": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_baseline_s1": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_baseline_s2": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_baseline_s3": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_baseline_s4": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_high_variance_s0": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_high_variance_s1": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_high_variance_s2": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_high_variance_s3": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_comm_high_variance_s4": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_high_variance_s0": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_high_variance_s1": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_high_variance_s2": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_high_variance_s3": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_ippo_high_variance_s4": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_baseline_s0": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_baseline_s1": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_baseline_s2": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_baseline_s3": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_baseline_s4": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_baseline_s0": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_baseline_s1": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_baseline_s2": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_baseline_s3": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_baseline_s4": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_high_variance_s0": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_high_variance_s1": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_high_variance_s2": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_high_variance_s3": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_comm_high_variance_s4": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_high_variance_s0": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_high_variance_s1": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_high_variance_s2": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_high_variance_s3": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase6_mappo_high_variance_s4": {
+      "phase": "phase6",
+      "status": "VALID",
+      "eval_completeness": "COMPLETE (30/30)"
+    },
+    "phase9_exponential_smoothing_forecaster": {
+      "phase": "phase9",
+      "status": "VALID_OFFLINE_BENCHMARK",
+      "eval_completeness": "NOT_APPLICABLE"
+    },
+    "phase9_moving_average_forecaster": {
+      "phase": "phase9",
+      "status": "VALID_OFFLINE_BENCHMARK",
+      "eval_completeness": "NOT_APPLICABLE"
+    },
+    "phase9_naive_forecaster": {
+      "phase": "phase9",
+      "status": "VALID_OFFLINE_BENCHMARK",
+      "eval_completeness": "NOT_APPLICABLE"
+    },
+    "phase9_xgboost_forecaster": {
+      "phase": "phase9",
+      "status": "VALID_OFFLINE_BENCHMARK",
+      "eval_completeness": "NOT_APPLICABLE"
+    }
+  }
+}
